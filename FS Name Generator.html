@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Sorter</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Name Sorter</h1>
+    <form id="nameForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br><br>
+        <label for="id">ID Number:</label>
+        <input type="text" id="id" required><br><br>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" required><br><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" rows="4" required></textarea><br><br>
+        <label for="todayDate">Today's Date:</label>
+        <input type="date" id="todayDate" required><br><br>
+        <button type="submit">Sort Name</button>
+    </form>
+    <div id="sortedName"></div>
+
+    <script>
+        document.getElementById("nameForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form values
+            let name = document.getElementById("name").value;
+            let id = document.getElementById("id").value;
+            let dob = document.getElementById("dob").value;
+            let description = document.getElementById("description").value;
+            let todayDate = document.getElementById("todayDate").value;
+
+            // Sort the name
+            let sortedName = sortName(name);
+
+            // Display sorted name
+            document.getElementById("sortedName").textContent = "Sorted Name: " + sortedName;
+
+            // You can use the other form values as required (e.g., to save in a file)
+            // Here, we are just displaying them for demonstration
+            console.log("ID Number: " + id);
+            console.log("Date of Birth: " + dob);
+            console.log("Description: " + description);
+            console.log("Today's Date: " + todayDate);
+        });
+
+        function sortName(name) {
+            // Split the name into an array of words
+            let words = name.split(" ");
+            // Sort the words alphabetically
+            words.sort();
+            // Join the sorted words back into a single string
+            return words.join(" ");
+        }
+    </script>
+</body>
+</html>
